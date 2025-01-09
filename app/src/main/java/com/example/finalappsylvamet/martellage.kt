@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             YourAppNameTheme {
                 Box(modifier = Modifier.fillMaxSize()) {
                     Image(
-                        painter = painterResource(id = R.drawable.icon_arbre),
+                        painter = painterResource(id = R.drawable.icon_sylvamet),
                         contentDescription = "Bouton vers Martellage",
                         modifier = Modifier
                             .align(Alignment.Center)

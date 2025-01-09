@@ -1,4 +1,4 @@
-package com.example.gradientlogo
+package com.example.finalappsylvamet
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+
 
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +46,7 @@ fun GradientBackgroundWithLogo() {
     ) {
         // Logo centré
         Image(
-            painter = painterResource(id = R.drawable.icone_sylvamet.png), // Assurez-vous que le fichier logo.png existe dans res/drawable
+            painter = painterResource(id = R.drawable.icon_sylvamet), // Assurez-vous que le fichier logo.png existe dans res/drawabl
             contentDescription = "Logo",
             contentScale = ContentScale.Fit,
             modifier = Modifier.size(150.dp) // Ajuste la taille du logo
