@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +34,10 @@ fun GradientBackgroundWithLogo() {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFFFFA726), // Orange
-                        Color(0xFFFF7043), // Rouge-orangé
-                        Color(0xFFAB47BC), // Violet
-                        Color(0xFF42A5F5)  // Bleu
+                        Color(0xFFF28627), // Couleur Orange
+                        Color(0xFFF2A35E), // Couleur Rouge-orangé
+                        Color(0xFFF27127), // Couleur Violet
+                        Color(0xFFF2F2F2)  // Couleur Bleu
                     )
                 )
             ),
@@ -44,7 +45,7 @@ fun GradientBackgroundWithLogo() {
     ) {
         // Logo centré
         Image(
-            painter = painterResource(id = R.drawable.logo), // Place ton logo dans res/drawable sous le nom logo.png
+            painter = painterResource(id = R.drawable.icone_sylvamet.png), // Assurez-vous que le fichier logo.png existe dans res/drawable
             contentDescription = "Logo",
             contentScale = ContentScale.Fit,
             modifier = Modifier.size(150.dp) // Ajuste la taille du logo

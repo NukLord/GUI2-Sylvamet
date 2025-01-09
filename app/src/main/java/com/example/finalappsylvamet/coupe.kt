@@ -1,6 +1,5 @@
 package com.example.finalappsylvamet
 
-// IMPORTS À NE PAS MODIFIER
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,12 +10,16 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +36,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun NouveauCubageScreen() {
     Scaffold(
@@ -98,7 +102,10 @@ fun NouveauCubageScreen() {
                 value = "",
                 onValueChange = { /* TODO: Mettre à jour la coupe */ },
                 label = { Text("Coupe") },
-                leadingIcon = { Icon(Icons.Default.Book, contentDescription = null) },
+                leadingIcon = { Icon(
+                    Icons.Default.Book,
+                    contentDescription = null
+                ) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -152,13 +159,13 @@ fun NouveauCubageScreen() {
             ) {
                 Button(
                     onClick = { /* TODO: Ajouter */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Green)
                 ) {
                     Text("Ajouter", color = Color.White)
                 }
                 Button(
                     onClick = { /* TODO: Supprimer */ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
                     Text("Supprimer", color = Color.White)
                 }
@@ -168,29 +175,24 @@ fun NouveauCubageScreen() {
 }
 
 @Composable
-fun OutlinedTextField(
-    value: String,
-    onValueChange: () -> Unit,
-    label: () -> Text,
-    leadingIcon: () -> Icon,
-    modifier: Modifier
-) {
-    TODO("Not yet implemented")
-}
-
-@Composable
 fun BottomNavigationItem(
-    icon: () -> Icon,
-    label: () -> Text,
+    icon: @Composable () -> Unit,
+    label: @Composable () -> Unit,
     selected: Boolean,
     onClick: () -> Unit
 ) {
-    TODO("Not yet implemented")
+    BottomNavigationItem(
+        icon = icon,
+        label = label,
+        selected = selected,
+        onClick = onClick,
+        alwaysShowLabel = true
+    )
 }
 
 @Composable
-fun BottomNavigation(content: @Composable () -> BottomNavigationItem) {
-    TODO("Not yet implemented")
+fun BottomNavigation(content: @Composable () -> Unit) {
+    androidx.compose.material.BottomNavigation(content = content)
 }
 
 @Preview(showBackground = true)

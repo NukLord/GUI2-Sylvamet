@@ -3,11 +3,10 @@ package com.example.finalappsylvamet
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -53,7 +52,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(painter = painterResource(id = R.drawable.ic_documents), contentDescription = "Documents")
             },
             label = { Text("Documents") },
-            selected = false,
+            selected = navController.currentBackStackEntry?.destination?.route == "documents",
             onClick = { navController.navigate("documents") }
         )
         BottomNavigationItem(
@@ -61,7 +60,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(painter = painterResource(id = R.drawable.ic_measure), contentDescription = "Mesures")
             },
             label = { Text("Mesures") },
-            selected = false,
+            selected = navController.currentBackStackEntry?.destination?.route == "mesures",
             onClick = { navController.navigate("mesures") }
         )
         BottomNavigationItem(
@@ -69,7 +68,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(painter = painterResource(id = R.drawable.ic_tools), contentDescription = "Outils")
             },
             label = { Text("Outils") },
-            selected = false,
+            selected = navController.currentBackStackEntry?.destination?.route == "outils",
             onClick = { navController.navigate("outils") }
         )
     }
@@ -84,6 +83,10 @@ fun NavigationGraph(navController: NavHostController) {
     }
 }
 
+fun composable(string: String, function: () -> Unit) {
+    TODO("Not yet implemented")
+}
+
 @Composable
 fun NavHost(
     x0: NavHostController,
@@ -96,12 +99,14 @@ fun NavHost(
 @Composable
 fun DocumentsScreen() {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
         Text("Cubages", style = MaterialTheme.typography.h5)
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn {
-            items(sampleData.size) { index ->
+            items(sampleData) { item ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -109,11 +114,11 @@ fun DocumentsScreen() {
                         .background(Color(0xFFF2F2F2))
                         .padding(8.dp)
                 ) {
-                    Text(sampleData[index].coupe, modifier = Modifier.weight(1f))
-                    Text(sampleData[index].date, modifier = Modifier.weight(1f))
-                    Text(sampleData[index].numero.toString(), modifier = Modifier.weight(1f))
+                    Text(item.coupe, modifier = Modifier.weight(1f))
+                    Text(item.date, modifier = Modifier.weight(1f))
+                    Text(item.numero.toString(), modifier = Modifier.weight(1f))
                     Icon(
-                        painter = painterResource(id = sampleData[index].typeIcon),
+                        painter = painterResource(id = item.typeIcon),
                         contentDescription = "Type",
                         modifier = Modifier.size(24.dp)
                     )
@@ -145,13 +150,13 @@ data class CubageData(
 )
 
 val sampleData = listOf(
-    CubageData("AUG 144", "11.02.24", 1300, R.drawable.ic_type1),
-    CubageData("NEJ 134", "19.01.24", 3203, R.drawable.ic_type2),
-    CubageData("LAK 234", "10.12.23", 4839, R.drawable.ic_type1),
-    CubageData("POW 493", "17.10.23", 8930, R.drawable.ic_type1),
-    CubageData("LOQ 530", "15.08.23", 3245, R.drawable.ic_type2),
-    CubageData("OLW 156", "25.06.23", 5432, R.drawable.ic_type2),
-    CubageData("JFR 308", "02.05.23", 4829, R.drawable.ic_type1),
-    CubageData("KSM 679", "09.03.22", 1400, R.drawable.ic_type2),
-    CubageData("TSR 796", "21.01.22", 1450, R.drawable.ic_type1)
+    CubageData("AUG 144", "11.02.24", 1300, R.drawable.icon_tige),
+    CubageData("NEJ 134", "19.01.24", 3203, R.drawable.icon_pile),
+    CubageData("LAK 234", "10.12.23", 4839, R.drawable.icon_tige),
+    CubageData("POW 493", "17.10.23", 8930, R.drawable.icon_tige),
+    CubageData("LOQ 530", "15.08.23", 3245, R.drawable.icon_pile),
+    CubageData("OLW 156", "25.06.23", 5432, R.drawable.icon_pile),
+    CubageData("JFR 308", "02.05.23", 4829, R.drawable.icon_tige),
+    CubageData("KSM 679", "09.03.22", 1400, R.drawable.icon_pile),
+    CubageData("TSR 796", "21.01.22", 1450, R.drawable.icon_tige)
 )
